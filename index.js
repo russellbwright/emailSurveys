@@ -29,5 +29,4 @@ app.listen(PORT, () => {
     console.log(`Youre listening on port ${PORT}`)
 }) 
 
-//got an error with heroku
-//just trying something
+// had to update npm to push to heroku correctly
