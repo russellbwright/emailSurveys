@@ -23,9 +23,8 @@
     "/auth/google": {
       "target": "http://localhost:5000"
     },
-    "/api/*":{
+    "/api/*": {
       "target": "http://localhost:5000"
     }
-
   }
 }
