@@ -1,28 +1,41 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
 class Header extends Component {
-    render() {
-        console.log(this.props)
+  renderContent() {
+    switch (this.props.auth) {
+      case null:
+        return;
+      case false:
         return (
-            <nav>
-                <div className="nav-wrapper">
-                    <a className="left brand-logo">
-                        Emaily
-                    </a>
-                    <ul className="right">
-                        <li>
-                            <a>Login With Google</a>
-                        </li>
-                    </ul>        
-                </div>
-            </nav>   
-        )
+          <li>
+            <a href="/auth/google">Login With Google</a>
+          </li>
+        );
+      default:
+        return <li><a>Logout</a></li>;
     }
+  }
+
+  render() {
+    return (
+      <nav>
+        <div className="nav-wrapper">
+          <a className="left brand-logo">Emaily</a>
+          <ul className="right">
+            {/* <li>
+                            <a>Login With Google</a>
+                        </li> */}
+            {this.renderContent()}
+          </ul>
+        </div>
+      </nav>
+    );
+  }
 }
 
 function mapStateToProps({ auth }) {
-    return { auth };
+  return { auth };
 }
 
 export default connect(mapStateToProps)(Header);
