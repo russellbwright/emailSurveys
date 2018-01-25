@@ -27,6 +27,20 @@ require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
 
 
+if (process.env.NODE_ENV === 'production') {
+    // Express will server up production assessts
+    // like our main.js file
+    app.use(express.static('client/build'));
+
+    // Express will server up the index.html file
+    // it is does not recognize the route
+    const path = requre('path');
+    app.get('*', (req,res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    })
+
+}
+
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
